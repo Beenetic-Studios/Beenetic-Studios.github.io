@@ -1,59 +1,246 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beenetic Studios</title>
+<meta name="description" content="Beenetic Studios is an independent game development studio building thoughtful, well-crafted games for mobile.">
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+<meta property="og:title" content="Beenetic Studios">
+<meta property="og:description" content="An independent game development studio building thoughtful, well-crafted games for mobile.">
+<meta property="og:url" content="https://www.beeneticstudios.com/">
+<meta property="og:image" content="https://www.beeneticstudios.com/icon-512.png">
+<meta property="og:type" content="website">
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
+<style>
+  /* Palette sampled from the studio mark: navy #242a3a, gold #f5b700, near-black #14161e. */
+  :root {
+    --bg:        #fbfaf7;
+    --surface:   #ffffff;
+    --border:    #e6e2d8;
+    --ink:       #1c1f26;
+    --ink-soft:  #545b69;
+    --ink-faint: #868d9c;
+    --gold:      #f5b700;   /* the brand gold, decorative use only */
+    --accent:    #9a7106;   /* darkened for legible text/underlines on a light background */
+  }
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #14161e;
+      --surface:   #1d2130;
+      --border:    #2c3242;
+      --ink:       #eef1f6;
+      --ink-soft:  #a8b0be;
+      --ink-faint: #737c8c;
+      --gold:      #f5b700;
+      --accent:    #f5b700;
+    }
+  }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="beenetic_studios">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  * { box-sizing: border-box; }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  html { -webkit-text-size-adjust: 100%; }
 
-  <title>beenetic_studios</title>
-  <link rel="manifest" href="manifest.json">
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "2133040644";
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  .wrap {
+    max-width: 43rem;
+    margin: 0 auto;
+    padding: clamp(3rem, 9vw, 6rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+  }
+
+  /* ---- Masthead ---- */
+
+  .mark {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .mark img {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    display: block;
+  }
+
+  .mark .name {
+    font-size: 1.2rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6.5vw, 2.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    margin: 0 0 1.1rem;
+  }
+
+  .lede {
+    font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+    color: var(--ink-soft);
+    margin: 0 0 3.25rem;
+    max-width: 34rem;
+  }
+
+  /* ---- Sections ---- */
+
+  h2 {
+    font-size: 0.78rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+  }
+
+  section { margin-bottom: 3.25rem; }
+
+  p { margin: 0 0 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ---- Project card ---- */
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 1.6rem;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    white-space: nowrap;
+  }
+
+  .card p {
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+    margin: 0;
+  }
+
+  /* ---- Links ---- */
+
+  a {
+    color: var(--ink);
+    text-decoration-color: color-mix(in srgb, var(--gold) 70%, transparent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+
+  a:hover { text-decoration-color: var(--gold); }
+
+  .contact a { font-weight: 550; }
+
+  /* ---- Footer ---- */
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  footer a { color: var(--ink-faint); }
+  footer a:hover { color: var(--ink-soft); }
+</style>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+<div class="wrap">
+
+  <div class="mark">
+    <img src="logo-200.png" width="44" height="44" alt="Beenetic Studios">
+    <span class="name">Beenetic Studios</span>
+  </div>
+
+  <h1>Independent game development.</h1>
+
+  <p class="lede">
+    Beenetic Studios is a small independent studio building thoughtful, carefully
+    made games for mobile.
+  </p>
+
+  <section>
+    <h2>About</h2>
+    <p>
+      Beenetic Studios is the work of Braden Franksen, a solo developer based in the
+      United States. The focus is on classic games rebuilt properly: strong opponents,
+      clean interfaces, and the kind of polish that usually gets cut.
+    </p>
+  </section>
+
+  <section>
+    <h2>Current project</h2>
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Reversi Rivals</span>
+        <span class="tag">In development</span>
+      </div>
+      <p>
+        A modern take on Reversi and Othello for mobile, with a deep single-player
+        ladder, online matches against other players, puzzles, and a full review mode
+        that grades every move you make.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>
+      General enquiries and support:
+      <a href="mailto:support@beeneticstudios.com">support@beeneticstudios.com</a>
+    </p>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Beenetic Studios</span>
+    <span><a href="https://legal.beeneticstudios.com/">Legal &amp; privacy</a></span>
+  </footer>
+
+</div>
 </body>
 </html>
