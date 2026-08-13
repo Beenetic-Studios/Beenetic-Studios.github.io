@@ -1,0 +1,4 @@
+# Beenetic Studios authorized digital sellers (IAB app-ads.txt).
+# Must stay at the root of the domain named as the "developer website" on the
+# Google Play and App Store listings. Crawled by AdMob within ~24 hours.
+google.com, pub-6186162692905326, DIRECT, f08c47fec0942fa0
