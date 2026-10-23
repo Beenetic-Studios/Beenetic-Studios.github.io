@@ -1,0 +1,481 @@
+/* Beenetic Studios: the one stylesheet every page on www shares.
+   Palette sampled from the studio mark: navy #242a3a, gold #f5b700, near-black #14161e. */
+:root {
+  --bg:        #fbfaf7;
+  --surface:   #ffffff;
+  --border:    #e6e2d8;
+  --ink:       #1c1f26;
+  --ink-soft:  #545b69;
+  --ink-faint: #868d9c;
+  --gold:      #f5b700;   /* the brand gold, decorative use only */
+  --accent:    #9a7106;   /* darkened for legible text/underlines on a light background */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #14161e;
+    --surface:   #1d2130;
+    --border:    #2c3242;
+    --ink:       #eef1f6;
+    --ink-soft:  #a8b0be;
+    --ink-faint: #737c8c;
+    --gold:      #f5b700;
+    --accent:    #f5b700;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 43rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 9vw, 6rem) clamp(1.25rem, 5vw, 2rem) 3rem;
+}
+
+/* ---- Masthead ---- */
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.mark img {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: block;
+}
+
+.mark .name {
+  font-size: 1.1rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2rem, 6.5vw, 2.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 1.1rem;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  color: var(--ink-soft);
+  margin: 0 0 3.25rem;
+  max-width: 34rem;
+}
+
+/* The home intro spans the column, so it lines up with the full-width game card below it. */
+.lede.full { max-width: none; }
+
+/* ---- Sections ---- */
+
+h2 {
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+
+h3 {
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.005em;
+  margin: 0 0 0.3rem;
+}
+
+section { margin-bottom: 3.25rem; }
+
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+/* ---- Cards ---- */
+
+.card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+}
+
+a.card {
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+
+a.card:hover, a.card:focus-visible { border-color: var(--gold); }
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  white-space: nowrap;
+}
+
+.card p {
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  margin: 0;
+}
+
+.card .more {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* A card that asks for something: the gold rule on its leading edge marks it as the page's call to action. */
+.callout {
+  border-left: 4px solid var(--gold);
+}
+
+.callout p + p { margin-top: 0.75rem; }
+
+/* ---- Buttons ---- */
+
+.btns { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  text-decoration: none;
+  border: 1.5px solid var(--gold);
+  color: var(--ink);
+}
+
+.btn.primary { background: var(--gold); color: #14161e; }
+
+.btn:hover { filter: brightness(1.06); }
+
+/* ---- Home: a game's card (one per game; a second game adds a second card) ---- */
+
+.game-card { display: grid; gap: 1.5rem; }
+
+.game-card .who { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+
+.game-card .who img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+
+.game-card .who .card-title { font-size: 1.3rem; }
+
+.game-card .thumbs { display: flex; gap: 0.6rem; }
+
+.game-card .thumbs img {
+  width: calc((100% - 1.2rem) / 3);
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* ---- Links ---- */
+
+a {
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, var(--gold) 70%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+a:hover { text-decoration-color: var(--gold); }
+
+.contact a { font-weight: 550; }
+
+ul.plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.plain li + li { margin-top: 0.5rem; }
+
+/* ---- Game page ---- */
+
+.game-head {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+.game-head img {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  border-radius: 20px;
+  display: block;
+}
+
+.game-head h1 { margin: 0; }
+
+.game-head .platform {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+  margin-top: 0.35rem;
+}
+
+.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  margin: 0 0 3.25rem;
+}
+
+/* The screenshot strip scrolls inside itself; the page never scrolls sideways. */
+.shots {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 0 0.75rem;
+  margin: 0;
+  list-style: none;
+  scrollbar-width: thin;
+}
+
+.shots li {
+  flex: none;
+  width: 180px;
+  scroll-snap-align: start;
+}
+
+.shots a { display: block; }
+
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.shot-title {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.shot-sub {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.features {
+  display: grid;
+  gap: 1.5rem 2rem;
+}
+
+@media (min-width: 600px) {
+  .features { grid-template-columns: 1fr 1fr; }
+}
+
+.features p {
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  margin: 0;
+}
+
+/* ---- Game page, desktop ----
+   Only the game page widens: it is a showcase, while text pages keep the reading measure. Below 900px it is the
+   phone layout above, untouched. The hero's two shots stand beside the intro, so the strip drops them (.in-hero)
+   and the feature graphic, which the hero replaces. */
+
+.hero-art { display: none; }
+
+@media (min-width: 900px) {
+  .wrap.wide { max-width: 72rem; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .hero-text > section:last-child { margin-bottom: 0; }
+
+  .hero-text .banner { display: none; }
+
+  .hero-art {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .hero-art figure {
+    margin: 0;
+    width: clamp(160px, 17vw, 220px);
+  }
+
+  .hero-art figure + figure { margin-top: 3rem; }
+
+  .hero-art a { display: block; }
+
+  .hero-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.14);
+  }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.25rem;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .shots li { width: auto; }
+
+  .shots li.in-hero { display: none; }
+
+  .features { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---- Screenshot viewer ----
+   A tap on a shot opens its full-size copy over the page; a tap anywhere or Esc closes it. Without the script the
+   link still opens the image on its own. */
+
+a.zoom { cursor: zoom-in; }
+
+.viewer {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+  cursor: zoom-out;
+}
+
+.viewer::backdrop { background: rgb(0 0 0 / 0.82); }
+
+.viewer img {
+  display: block;
+  height: auto;
+  width: auto;
+  max-height: 92vh;
+  max-width: 92vw;
+  border-radius: 14px;
+}
+
+/* ---- FAQ ---- */
+
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0;
+}
+
+.faq details + details { margin-top: 0.75rem; }
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1rem 3rem 1rem 1.25rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.faq details[open] summary::after { content: "\2212"; }
+
+.faq .answer {
+  padding: 0 1.25rem 1.1rem;
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+}
+
+.faq .answer ol, .faq .answer ul { padding-left: 1.25rem; margin: 0 0 1rem; }
+.faq .answer li + li { margin-top: 0.35rem; }
+.faq .answer strong { color: var(--ink); font-weight: 600; }
+
+/* ---- Footer ---- */
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+footer nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+
+footer a { color: var(--ink-faint); }
+footer a:hover { color: var(--ink-soft); }
