@@ -176,6 +176,7 @@ a.card:hover, a.card:focus-visible { border-color: var(--gold); }
 }
 
 .callout p + p { margin-top: 0.75rem; }
+.callout .btns + p { margin-top: 1.25rem; }
 
 /* ---- Buttons ---- */
 
