@@ -427,6 +427,8 @@ a.zoom { cursor: zoom-in; }
 }
 
 .faq details + details { margin-top: 0.75rem; }
+.faq h3 { margin: 2rem 0 0.75rem; }
+.faq h2 + h3 { margin-top: 0; }
 
 .faq summary {
   cursor: pointer;
