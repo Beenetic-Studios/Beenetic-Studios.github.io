@@ -89,6 +89,9 @@ h1 {
 /* The home intro spans the column, so it lines up with the full-width game card below it. */
 .lede.full { max-width: none; }
 
+/* A call to action right under the lede: pulled up close to it, the lede's gap moved below the buttons. */
+.lede + .btns { margin: -1.75rem 0 3.25rem; }
+
 /* ---- Sections ---- */
 
 h2 {
@@ -178,6 +181,48 @@ a.card:hover, a.card:focus-visible { border-color: var(--gold); }
 .callout p + p { margin-top: 0.75rem; }
 .callout .btns + p { margin-top: 1.25rem; }
 
+/* Numbered steps inside a callout, each with its own button. Stacked on a phone; three columns side by side once
+   the card is wide, the buttons pinned to the bottom so they line up. */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+/* Each step: the number and its title on one line, the description under both, then the button. The middle row
+   takes any spare height, so the buttons line up across the columns. */
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1.9rem minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 0.75rem;
+  row-gap: 0.75rem;
+  align-items: center;
+}
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+.step-title { font-weight: 650; color: var(--ink); }
+.callout .steps p { grid-column: 1 / -1; align-self: start; margin: 0; }
+.steps .btn { grid-column: 1 / -1; justify-self: start; width: 13rem; text-align: center; }
+.callout .steps + p { margin-top: 1.5rem; }
+
+@media (min-width: 720px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2rem; }
+}
+
 /* ---- Buttons ---- */
 
 .btns { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
@@ -206,6 +251,8 @@ a.card:hover, a.card:focus-visible { border-color: var(--gold); }
 .game-card .who img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
 
 .game-card .who .card-title { font-size: 1.3rem; }
+
+.game-card .btn { width: 13rem; text-align: center; }
 
 .game-card .thumbs { display: flex; gap: 0.6rem; }
 
@@ -348,9 +395,9 @@ ul.plain li + li { margin-top: 0.5rem; }
     margin-bottom: 4rem;
   }
 
-  .hero-text > section:last-child { margin-bottom: 0; }
-
   .hero-text .banner { display: none; }
+
+  .hero-text .lede + .btns { margin-bottom: 0; }
 
   .hero-art {
     display: flex;
