@@ -180,6 +180,9 @@ a.card:hover, a.card:focus-visible { border-color: var(--gold); }
 
 .callout p + p { margin-top: 0.75rem; }
 .callout .btns + p { margin-top: 1.25rem; }
+/* Callouts stacked in one section (the Android and iPhone tests), and the note that follows them. */
+.callout + .callout { margin-top: 1rem; }
+.after-cards { margin-top: 1.5rem; }
 
 /* Numbered steps inside a callout, each with its own button. Stacked on a phone; three columns side by side once
    the card is wide, the buttons pinned to the bottom so they line up. */
@@ -244,9 +247,17 @@ a.card:hover, a.card:focus-visible { border-color: var(--gold); }
 
 /* ---- Home: a game's card (one per game; a second game adds a second card) ---- */
 
-.game-card { display: grid; gap: 1.5rem; }
+/* minmax(0, 1fr), not the implicit auto track: an auto track grows to its widest unbreakable content, so one long
+   tag on a phone widened the whole card past the screen. */
+.game-card { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 
 .game-card .who { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+
+.game-card .who > div { min-width: 0; }
+
+/* The tag may wrap here (a phone is narrower than "Coming soon to Android and iPhone"). A fixed radius stays a full
+   pill on one line and turns into a rounded box on two. */
+.game-card .tag { display: inline-block; white-space: normal; border-radius: 0.8rem; }
 
 .game-card .who img { width: 64px; height: 64px; border-radius: 15px; flex: none; }
 
